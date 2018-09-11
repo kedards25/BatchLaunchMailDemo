@@ -34,8 +34,20 @@ public class SendMail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-//            final String from = "niit.vpe.studentservices@gmail.com";
-//        final String password = "P*1niitvpe#2";
+            
+            String s1=request.getParameter("facName");
+            String s2=request.getParameter("email");
+            String s3=request.getParameter("crsName");
+            String s4=request.getParameter("name");
+            //String s5=request.getParameter("stdName");
+          
+            out.print(s1);
+            out.print(s2);
+            out.print(s3);
+            out.print(s4);
+           // out.print(s5);
+//            final String from = "prathameshsawant97@gmail.com";
+//        final String password = "pass@1234";
 //        Properties props = new Properties();
 //        props.put("mail.smtp.auth", "true");
 //        props.put("mail.smtp.starttls.enable", "true");
@@ -52,7 +64,7 @@ public class SendMail extends HttpServlet {
 //        //compose message    
 //        try {
 //            MimeMessage message = new MimeMessage(session);
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress("niit.kedar@gmail.com"));
+//            message.addRecipient(Message.RecipientType.TO, new InternetAddress("prathameshsawant97@gmail.com"));
 //            message.setSubject("Test Email ID");
 //            message.setText("Test Mail Received");
 //
@@ -64,9 +76,9 @@ public class SendMail extends HttpServlet {
 //            throw new RuntimeException(e);
 //
 //        }
-        }
+//        }
     }
-
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

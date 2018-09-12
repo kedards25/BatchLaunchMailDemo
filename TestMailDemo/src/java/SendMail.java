@@ -35,50 +35,59 @@ public class SendMail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            String s1=request.getParameter("facName");
-            String s2=request.getParameter("email");
-            String s3=request.getParameter("crsName");
-            String s4=request.getParameter("name");
-            //String s5=request.getParameter("stdName");
+            String s1=request.getParameter("fName");
+            String s2=request.getParameter("mailid");
+            String s3=request.getParameter("crse");
+            String[] idArr=request.getParameterValues("idArr");
+            String[] nameArr=request.getParameterValues("nameArr");
           
-            out.print(s1);
-            out.print(s2);
-            out.print(s3);
-            out.print(s4);
+//            out.print(s1);
+//            out.print(s2);
+//            out.print(s3);
+//            out.print(s4);
            // out.print(s5);
-//            final String from = "prathameshsawant97@gmail.com";
-//        final String password = "pass@1234";
-//        Properties props = new Properties();
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.smtp.host", "smtp.gmail.com");
-//        props.put("mail.smtp.port", "587");
-//        //get Session   
-//        Session session = Session.getInstance(props,
-//                new javax.mail.Authenticator() {
-//                    @Override
-//                    protected PasswordAuthentication getPasswordAuthentication() {
-//                        return new PasswordAuthentication(from, password);
-//                    }
-//                });
-//        //compose message    
-//        try {
-//            MimeMessage message = new MimeMessage(session);
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress("prathameshsawant97@gmail.com"));
-//            message.setSubject("Test Email ID");
-//            message.setText("Test Mail Received");
-//
-//            Transport.send(message);
-//            out.print("Mail Sent..");
-//            //return true;
-//        } catch (MessagingException e) {
-//            
-//            throw new RuntimeException(e);
-//
-//        }
-//        }
+            final String from = "niit.vpe.studentservices@gmail.com";
+        final String password = "P*1niitvpe#2";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        //get Session   
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from, password);
+                    }
+                });
+        //compose message    
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("niit.kedar@gmail.com"));
+            message.setSubject("Test Email");
+            String idValues="<table style=\"width:60%\">";
+            for (int i = 0; i < idArr.length; i++) {
+                idValues+="<tr><td>"+idArr[i];
+                idValues+="</td><td>"+nameArr[i];
+                idValues+="</td></tr>";
+                
+            }
+            idValues+="</table>";
+            message.setText(idValues);
+
+            Transport.send(message);
+            out.print("Mail Sent..");
+            //return true;
+        } catch (MessagingException e) {
+            System.out.print(e.getMessage());
+            //throw new RuntimeException(e);
+            
+
+        }
+        }
     }
-    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
